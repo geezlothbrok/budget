@@ -1,5 +1,5 @@
 nav {
-    background: white;
+    background: red;
     width: 100vw;
     height: 4rem;
     display: grid;
@@ -17,25 +17,9 @@ nav {
     justify-content: space-between;
     align-items: center;
 }
+
 .toogle-mobile {
     display: none;
-}
-
-.nav-logo.container {
-    width: 4rem;
-    display: grid;
-    place-items: center;
-}
-
-.logo-icon {
-    font-size: 2rem;
-    padding-top: 2rem;
-    color: red;
-}
-
-.logo-text {
-    font-size: 1.5rem;
-    
 }
 
 .user-profile {
@@ -45,4 +29,16 @@ nav {
 .user-image {
     font-size: 1.5rem;
     padding-right: 0.8rem;
+} 
+
+.nav-logo-container {
+    display: flex;
+}
+
+.logo-icon {
+    font-size: 2rem;
+}
+
+.logo-text {
+    font-size: 1.3rem;
 }

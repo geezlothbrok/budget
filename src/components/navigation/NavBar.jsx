@@ -4,6 +4,7 @@ import { FaGoogleWallet } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { Link, NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -29,10 +30,18 @@ function NavBar() {
         </ul>
 
         <ul className="mobile-links">
-          <li>settings</li>
-          <li>profile</li>
-          <li>transactions</li>
-          <li>add new</li>
+          <li>
+            <NavLink to = "/settings">settings</NavLink>
+          </li>
+          <li>
+            <NavLink to = "/profile">profile</NavLink>
+          </li>
+          <li>
+            <NavLink to = "/history">history</NavLink>
+          </li>
+          <li>
+            <NavLink to = "/add">add new</NavLink>
+          </li>
         </ul>
 
         <ul className="toogle-mobile">
