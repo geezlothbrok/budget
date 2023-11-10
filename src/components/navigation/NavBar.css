@@ -1,0 +1,48 @@
+nav {
+    background: white;
+    width: 100vw;
+    height: 4rem;
+    display: grid;
+    place-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.navbar-container {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.toogle-mobile {
+    display: none;
+}
+
+.nav-logo.container {
+    width: 4rem;
+    display: grid;
+    place-items: center;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    padding-top: 2rem;
+    color: red;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    
+}
+
+.user-profile {
+    display: flex;
+}
+
+.user-image {
+    font-size: 1.5rem;
+    padding-right: 0.8rem;
+}
