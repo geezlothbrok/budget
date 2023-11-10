@@ -5,11 +5,12 @@ import NavBar from "./components/navigation/NavBar";
 function App() {
   return (
     <div className="App">
+      <BrowserRouter>
        <NavBar/>
         <Routes>
         <Route path="/" element = { <Dashboard/>}/>
         </Routes>
-       
+       </BrowserRouter>
     </div>
   );
 }

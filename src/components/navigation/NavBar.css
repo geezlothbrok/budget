@@ -1,5 +1,5 @@
 nav {
-    background: red;
+    background: white;
     width: 100vw;
     height: 4rem;
     display: grid;
@@ -8,6 +8,7 @@ nav {
     top: 0;
     left: 0;
     z-index: 2;
+    border-bottom: 1px solid rgba(179, 179, 179, 0.2);
 }
 
 .navbar-container {
@@ -26,19 +27,97 @@ nav {
     display: flex;
 }
 
-.user-image {
+.mobile-links li a {
+    color: black;
+    font-weight: 500;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: color 400ms ease;
+    position: relative;
+}
+
+.mobile-links li a.active::after {
+    content: "";
+    display: block;
+    background: blue;
+    height: 5px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.mobile-links li a:hover {
+    color: blue;
+}
+
+ .user-image {
     font-size: 1.5rem;
     padding-right: 0.8rem;
 } 
 
-.nav-logo-container {
-    display: flex;
-}
+
+
 
 .logo-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
-.logo-text {
-    font-size: 1.3rem;
+
+
+.mobile-links {
+    display: flex;
+    align-items: center;
+    gap: 4.5rem;
+    height: 100%;
 }
+
+.mobile-links li {
+    height: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+    .navbar-container {
+        width: 92%;
+        position: relative;
+    }
+
+    .mobile-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+    }
+
+    .mobile-links li {
+        width: 100%;
+
+    }
+    .mobile-links li a {
+
+        background: white;
+        height: 4rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 5rem 0 2.5rem;
+        border-top: 1px solid rgba(179, 179, 179, 0.2);
+    }
+    .mobile-links li a.active::after {
+        display: none;
+    }
+    .toogle-mobile {
+        display: inline-block;
+        font-size: 2rem;
+        color: black;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+}
+
+
+
