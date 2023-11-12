@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NavBar.css";
 import { FaGoogleWallet } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/bi";
@@ -7,6 +7,19 @@ import { IoClose } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
 function NavBar() {
+
+  const [showMobileMenu, setShowMobileMenu] = useState (false);
+
+  const toogleMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+    console.log("hello");
+  };
+
+  const hideMenu = () => {
+    setShowMobileMenu(false)
+    console.log("i can hide");
+  };
+
   return (
     <nav>
       <div className="navbar-container">
@@ -44,18 +57,15 @@ function NavBar() {
           </li>
         </ul>
 
-        <ul className="toogle-mobile">
-          <li>
-            <button className="open-menu">
+        <div>
+            {showMobileMenu ? (<button className= "open-menu" onClick={toogleMenu}>
               <HiMenuAlt4 />
-            </button>
-          </li>
-          <li>
-            <button className="close-menu">
+            </button>) : (<button className="close-menu" onClick={hideMenu}>
               <IoClose />
-            </button>
-          </li>
-        </ul>
+            </button>)}
+         
+            
+         </div>
       </div>
     </nav>
   );

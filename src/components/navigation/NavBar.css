@@ -17,11 +17,17 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+   
 }
 
-.toogle-mobile {
+
+
+.open-menu, .close-menu {
     display: none;
-}
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+} 
 
 .user-profile {
     display: flex;
@@ -89,6 +95,7 @@ nav {
         flex-direction: column;
         gap: 0;
         align-items: flex-start;
+        /* display: none; */
     }
 
     .mobile-links li {
@@ -108,14 +115,18 @@ nav {
     .mobile-links li a.active::after {
         display: none;
     }
-    .toogle-mobile {
+    .open-menu, .close-menu {
         display: inline-block;
-        font-size: 2rem;
+        font-size: 1.2rem;
         color: black;
         border: none;
         background: transparent;
         cursor: pointer;
     }
+    /* .close-menu {
+        display: none;
+    } */
+
 
 }
 
