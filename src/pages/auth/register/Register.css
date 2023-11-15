@@ -1,0 +1,17 @@
+.main-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+.image-container {
+    background: red;    
+    height: 100%;
+    width: 100%;
+}
+
+.form-container {
+    background: green;
+    height: 100%;
+    width: 100%;
+}
