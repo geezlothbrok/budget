@@ -3,21 +3,22 @@ nav {
     place-items: center;
     width: 100vw;
     height: 4rem;
-    background: red;
+    background: #fff;
     position: sticky;
     top: 0;
     left: 0;
+    border-bottom: 1px solid rgba(146, 145, 145, 0.2);
 }
 
 .nav-container ul li a:hover {
     cursor: pointer;
-    color: aqua;
+    color: #33CEFF;
 }
 
 .nav-container ul li a.active::after {
     content: "";
     display: block;
-    background: aqua;
+    background: #33CEFF;
     height: 5px;
     width: 100%;
     position: absolute;
@@ -36,6 +37,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: rgb(97, 97, 97);
 }
 
 .nav-container ul {
@@ -48,7 +50,7 @@ nav {
 
 .nav-container ul a {
     text-decoration: none;
-    color: black;
+    color:rgb(97, 97, 97);
     align-items: center;
     height: 100%;
     font-weight: 500;
@@ -62,6 +64,7 @@ nav {
 
 .logo-container .logo-image {
     font-size: 2rem;
+    color: #33CEFF;
 }
 
 .logo-container .logo-text {
@@ -116,12 +119,12 @@ nav {
     }
 
     .nav-container ul li a {
-        background: red;
+        background: #fff;
         height: 4rem;
         width: 100%;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid black;
+        border: 1px solid rgba(146, 145, 145, 0.2);
         padding: 0 5rem 0 2.5rem;
     }
 
