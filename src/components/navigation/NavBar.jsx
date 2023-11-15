@@ -1,74 +1,65 @@
-import React, { useState } from "react";
-import "./NavBar.css";
-import { FaGoogleWallet } from "react-icons/fa";
-import { BiUserCircle } from "react-icons/bi";
-import { HiMenuAlt4 } from "react-icons/hi";
-import { IoClose } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import React, { useState } from 'react';
+import { FaBars, FaGoogleWallet, FaTimes, FaUserCircle } from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
+
+import "./NavBar.css"
+
 
 function NavBar() {
+  const [menuOpen, setMenuOpen] =useState(false);
 
-  const [showMobileMenu, setShowMobileMenu] = useState (false);
-
-  const toogleMenu = () => {
-    setShowMobileMenu(!showMobileMenu);
-    console.log("hello");
+  const openMenu = () => {
+    setMenuOpen(!menuOpen)
   };
 
   const hideMenu = () => {
-    setShowMobileMenu(false)
-    console.log("i can hide");
+    setMenuOpen(false)
   };
-
   return (
     <nav>
-      <div className="navbar-container">
-        <div className="nav-logo-container">
+      <div className="nav-container">
+        <div className="logo-container" onClick={hideMenu}>
           <p className="logo-text">
-            
-            <span className="logo-icon">
-              <FaGoogleWallet />
-            </span>
+          <FaGoogleWallet className='logo-image'/>
             Budget.io
           </p>
         </div>
 
-        <ul className="user-profile">
-          <li className="user-image">
-            <BiUserCircle />
+        <div className="user-profile" onClick={hideMenu}>
+          <span className="user-image">
+            <FaUserCircle />
+          </span>
+          <span className="user-name">
+            Hello,
+          </span>
+        </div>
+        <ul className={menuOpen ? "open" : ""}>
+          <li onClick={hideMenu}>
+            <NavLink to="/">Home</NavLink>
           </li>
-          <li className="user-name">
-            <h3>hi, user</h3>
+          <li onClick={hideMenu}>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+          <li onClick={hideMenu}>
+            <NavLink to="/register">Register</NavLink>
+          </li>
+          <li onClick={hideMenu}>
+            <NavLink to="/reset">Reset</NavLink>
+          </li>
+          <li onClick={hideMenu}>
+            <NavLink to="/add">Add</NavLink>
+          </li>
+          <li onClick={hideMenu}>
+            <NavLink to="/login">Logout</NavLink>
           </li>
         </ul>
 
-        <ul className="mobile-links">
-          <li>
-            <NavLink to = "/settings" className= "active">settings</NavLink>
-          </li>
-          <li>
-            <NavLink to = "/profile" className= "active">profile</NavLink>
-          </li>
-          <li>
-            <NavLink to = "/history" className= "active">history</NavLink>
-          </li>
-          <li>
-            <NavLink to = "/add"  className= "active">add new</NavLink>
-          </li>
-        </ul>
-
-        <div>
-            {showMobileMenu ? (<button className= "open-menu" onClick={toogleMenu}>
-              <HiMenuAlt4 />
-            </button>) : (<button className="close-menu" onClick={hideMenu}>
-              <IoClose />
-            </button>)}
-         
-            
-         </div>
+          <div className="toogle-menu" onClick={openMenu}>
+           {menuOpen ? (<FaTimes /> ) : ( <FaBars />)}
+          </div>
       </div>
     </nav>
-  );
+  )
 }
 
-export default NavBar;
+export default NavBar
