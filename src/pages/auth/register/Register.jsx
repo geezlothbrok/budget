@@ -41,10 +41,11 @@ function Register() {
           I already have an account? <Link to = "/login">Sign In</Link>
         </p>
       </section>
+      <div className="line">
       <span className="left-line"></span>
         or
         <span className="right-line"></span>
-
+      </div>
         <div className="google-button">
           <button type="submit"><span>
             <FcGoogle /></span>Google</button>

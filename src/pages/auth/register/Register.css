@@ -52,7 +52,7 @@
 
 .form-container .actions {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
 }
@@ -64,4 +64,23 @@
     border: transparent;
     border-radius: 10px;
     font-weight: 500;
+}
+
+.form-container .actions .already-account {
+    font-size: 0.8rem;
+}
+
+.form-container .actions .already-account a {
+    color: rgb(82, 82, 250);
+    text-decoration: underline;
+}
+
+.form-container .line {
+    display: flex;
+}
+
+.form-container .line .left-line {
+    /* background: grey; */
+    width: 10rem;
+    height: 1px solid rgba(146, 145, 145, 0.2);;
 }
