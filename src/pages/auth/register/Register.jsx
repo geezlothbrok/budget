@@ -43,7 +43,7 @@ function Register() {
       </section>
       <div className="line">
       <span className="left-line"></span>
-        or
+        <span className="line-text">or</span>
         <span className="right-line"></span>
       </div>
         <div className="google-button">

@@ -77,10 +77,35 @@
 
 .form-container .line {
     display: flex;
+    position: relative;
+    margin-bottom: 1rem;
 }
 
 .form-container .line .left-line {
-    /* background: grey; */
+    background: grey;
     width: 10rem;
-    height: 1px solid rgba(146, 145, 145, 0.2);;
+    height: 1px;
+    position: absolute;
+    display: block;
+    top: 2rem;
+    right: -10rem;
+}
+
+.form-container .line .right-line {
+    background: grey;
+    width: 10rem;
+    height: 1px;
+    position: absolute;
+    display: block;
+    top: 2rem;
+    left: 12rem;
+}
+
+.form-container .line .line-text {
+    text-transform: capitalize;
+    padding: 0 0.7rem 0rem 0.7rem;
+    position: absolute;
+    display: block;
+    top: 1.5rem;
+    left: 9.7rem;
 }
