@@ -49,7 +49,7 @@ function Login() {
         </div>
         <section className="actions">
           <button type="submit" className="button">
-            Sign Up
+            Sign In
           </button>
           <p className="already-account">
            <Link to="/reset">Forgot Password?</Link>
