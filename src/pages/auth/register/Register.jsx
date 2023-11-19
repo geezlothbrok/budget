@@ -17,22 +17,31 @@ function Register() {
 
       <section className="form-container">
         <p className="tittle">sign up</p>
+
         <div className="form">
+
           <span className="email-input">
-            <TfiEmail className="icon"/>
-            <input type="email" placeholder="Email @" />
+
+            <TfiEmail className="icon" />
+
+            <input
+              type="email"
+              placeholder="Email @"
+              required
+              inputMode="email"
+              autoCapitalize="none"
+              autoCorrect="none"
+              aria-autocomplete="none"
+            />
           </span>
         </div>
 
         <div className="password">
-          <span
-            className="email-input"
-            required
-            inputMode="email"
-            autoCapitalize="none"
-            autoCorrect="none"
-            aria-autocomplete="none">
-            <PiLockKeyOpen  className="icon"/>
+
+          <span className="email-input">
+
+            <PiLockKeyOpen className="icon" />
+
             <input
               type="password"
               placeholder="Password"
@@ -42,10 +51,14 @@ function Register() {
               autoComplete="none"
               autoCorrect="none"
             />
-            <p className="description">Password must contain at least 8 chars, [A-Z],[a-z],[0-9],[@#&]</p>
+
+            <p className="description">
+              Password must contain at least 8 chars, [A-Z],[a-z],[0-9],[@#&]
+            </p>
           </span>
+          
           <span className="email-input">
-            <PiLockKeyOpen  className="icon"/>
+            <PiLockKeyOpen className="icon" />
             <input
               type="password"
               placeholder="Repeat Passowrd"
