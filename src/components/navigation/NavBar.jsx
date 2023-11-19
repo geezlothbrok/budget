@@ -12,7 +12,7 @@ function NavBar() {
     setMenuOpen(!menuOpen)
   };
 
-  const hideMenu = () => {
+ const hideMenu = () => {
     setMenuOpen(false)
   };
   return (
@@ -33,7 +33,7 @@ function NavBar() {
             Hello,
           </span>
         </div>
-        <ul className={menuOpen ? "open" : ""}>
+        <ul className={menuOpen ? "open" : ""} onClick={hideMenu}>
           <li onClick={hideMenu}>
             <NavLink to="/">Home</NavLink>
           </li>
