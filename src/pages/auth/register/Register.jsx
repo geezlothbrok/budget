@@ -1,31 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.css";
 import register from "../../images/register.jpg";
+import Loader from "../../../components/loader/Loader"
 
 import { TfiEmail } from "react-icons/tfi";
 import { PiLockKeyOpen } from "react-icons/pi";
 import { FcGoogle } from "react-icons/fc";
 
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import {createUserWithEmailAndPassword} from "firebase/auth";
+import auth from "../../../firebase/config"
 
 function Register() {
 
   const [email, setEmail] =  useState("");
   const [password, setPassword] = useState("");
   const [cPassword, setCPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const createUser = (e) => {
     e.preventDefault();
     console.log(email, password, cPassword);
     if (password !== cPassword) {
-      toast.error("Passwords do not match")
+      toast.error("Passwords do not match.")
     };
+
+    setIsLoading(true);
+
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => { 
+    const user = userCredential.user;
+    console.log(user);
+    setIsLoading(false);
+    toast.success("Account successfully created.");
+    navigate("/login")
+  })
+  .catch((error) => {
+    toast.error(error.message);
+  });
+
   };
   return (
+    <>
+    {isLoading && <Loader />}
     <div className="main-container">
       <section className="image-container">
         <img src={register} alt="Sign up" />
@@ -114,6 +137,7 @@ function Register() {
         </div>
       </section>
     </div>
+    </>
   );
 }
 
