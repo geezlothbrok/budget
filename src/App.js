@@ -5,10 +5,12 @@ import Register from "../src/pages/auth/register/Register";
 import Reset from "../src/pages/auth/reset/Reset";
 import AddNew from "../src/pages/AddNew";
 import NavBar from "./components/navigation/NavBar";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <BrowserRouter>
        <NavBar/>
         <Routes>

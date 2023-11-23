@@ -9,6 +9,9 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Register() {
 
   const [email, setEmail] =  useState("");
@@ -18,6 +21,9 @@ function Register() {
   const createUser = (e) => {
     e.preventDefault();
     console.log(email, password, cPassword);
+    if (password !== cPassword) {
+      toast.error("Passwords do not match")
+    };
   };
   return (
     <div className="main-container">
@@ -57,7 +63,7 @@ function Register() {
             <input
               type="password"
               placeholder="Password"
-              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+              // pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
               required
               autoCapitalize="none"
               autoComplete="none"
@@ -86,7 +92,7 @@ function Register() {
           </span>
         </div>
         <section className="actions">
-          <button type="submit" className="button">
+          <button type="submit" className="button" onClick={createUser}>
             Sign Up
           </button>
           <p className="already-account">
