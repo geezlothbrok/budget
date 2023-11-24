@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {createUserWithEmailAndPassword} from "firebase/auth";
-import auth from "../../../firebase/config"
+import { auth } from "../../../firebase/config"
 
 function Register() {
 
@@ -43,13 +43,14 @@ function Register() {
   })
   .catch((error) => {
     toast.error(error.message);
+    setIsLoading(false)
   });
 
   };
   return (
     <>
     {isLoading && <Loader />}
-    <div className="main-container">
+    <form className="main-container" onSubmit={createUser}>
       <section className="image-container">
         <img src={register} alt="Sign up" />
       </section>
@@ -136,7 +137,7 @@ function Register() {
           </button>
         </div>
       </section>
-    </div>
+    </form>
     </>
   );
 }
