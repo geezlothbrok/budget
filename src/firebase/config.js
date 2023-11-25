@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-export const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyAm7C9KzLQMBHNNakwW2KVJysHAlm-OkEs",
   authDomain: "budget-app-a6d0e.firebaseapp.com",
   projectId: "budget-app-a6d0e",

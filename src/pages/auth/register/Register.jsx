@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import "./Register.css";
 import register from "../../images/register.jpg";
-import Loader from "../../../components/loader/Loader"
+import Loader from "../../../components/loader/Loader";
 
+// REACT ICONS IMPORT
 import { TfiEmail } from "react-icons/tfi";
 import { PiLockKeyOpen } from "react-icons/pi";
 import { FcGoogle } from "react-icons/fc";
 
+// REACT ROUTER DOM IMPORT
 import { Link, useNavigate } from "react-router-dom";
 
+// REACT TOASTIFY IMPORT
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// FIREBASE AUTH IMPORT
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import { auth } from "../../../firebase/config"
 
@@ -24,29 +28,31 @@ function Register() {
 
   const navigate = useNavigate();
 
+// CREATE USER WITH E-MAIL AND PASSWORD FUNCTION
   const createUser = (e) => {
     e.preventDefault();
-    console.log(email, password, cPassword);
-    if (password !== cPassword) {
-      toast.error("Passwords do not match.")
+    if(password !== cPassword){
+      toast.error("Passwords do not match")
     };
-
     setIsLoading(true);
 
     createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => { 
+  .then((userCredential) => {
+    // Signed up 
     const user = userCredential.user;
     console.log(user);
-    setIsLoading(false);
-    toast.success("Account successfully created.");
+    toast.success("Account Registration Success")
+    setIsLoading(false)
     navigate("/login")
   })
   .catch((error) => {
-    toast.error(error.message);
+    toast.error(error.message)
     setIsLoading(false)
   });
-
+    
   };
+
+  const googleSignIn = () => {};
   return (
     <>
     {isLoading && <Loader />}
@@ -71,7 +77,6 @@ function Register() {
               inputMode="email"
               autoCapitalize="none"
               autoCorrect="none"
-              aria-autocomplete="none"
               value={email}
               onChange={ (e) => setEmail(e.target.value)}
             />
@@ -129,7 +134,7 @@ function Register() {
           <span className="right-line"></span>
         </div>
         <div className="google-button">
-          <button type="submit" className="google">
+          <button type="submit" className="google" onClick={googleSignIn}>
             <span className="google-icon">
               <FcGoogle />
             </span>

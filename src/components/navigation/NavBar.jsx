@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { FaBars, FaGoogleWallet, FaTimes, FaUserCircle } from "react-icons/fa";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import "./NavBar.css"
+import { auth } from '../../firebase/config';
+import { signOut } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 
 function NavBar() {
   const [menuOpen, setMenuOpen] =useState(false);
+
+  const navigate = useNavigate()
 
   const openMenu = () => {
     setMenuOpen(!menuOpen)
@@ -14,6 +19,15 @@ function NavBar() {
 
  const hideMenu = () => {
     setMenuOpen(false)
+  };
+
+  const logOut = () => {
+    signOut(auth).then(() => {
+      toast.success("Logout Success");
+      navigate("/login")
+    }).catch((error) => {
+      toast.error(error.message)
+    });
   };
   return (
     <nav>
@@ -49,8 +63,8 @@ function NavBar() {
           <li onClick={hideMenu}>
             <NavLink to="/add">Add</NavLink>
           </li>
-          <li onClick={hideMenu}>
-            <NavLink to="/login">Logout</NavLink>
+          <li onClick={logOut}>
+            <NavLink>Logout</NavLink>
           </li>
         </ul>
 
