@@ -6,12 +6,14 @@ import "./NavBar.css"
 import { auth } from '../../firebase/config';
 import { signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import Loader from '../loader/Loader';
 
 
 function NavBar() {
   const [menuOpen, setMenuOpen] =useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const openMenu = () => {
     setMenuOpen(!menuOpen)
@@ -23,13 +25,18 @@ function NavBar() {
 
   const logOut = () => {
     signOut(auth).then(() => {
+      setIsLoading(true);
       toast.success("Logout Success");
+      setIsLoading(false);
       navigate("/login")
     }).catch((error) => {
-      toast.error(error.message)
+      toast.error(error);
+      setIsLoading(false);
     });
   };
   return (
+    <>
+    {isLoading && <Loader />}
     <nav>
       <div className="nav-container">
         <div className="logo-container" onClick={hideMenu}>
@@ -73,6 +80,7 @@ function NavBar() {
           </div>
       </div>
     </nav>
+    </>
   )
 }
 

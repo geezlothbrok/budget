@@ -16,7 +16,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // FIREBASE AUTH IMPORT
-import {createUserWithEmailAndPassword} from "firebase/auth";
+import {GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup} from "firebase/auth";
 import { auth } from "../../../firebase/config"
 
 function Register() {
@@ -27,6 +27,7 @@ function Register() {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const provider = new GoogleAuthProvider()
 
 // CREATE USER WITH E-MAIL AND PASSWORD FUNCTION
   const createUser = (e) => {
@@ -52,7 +53,18 @@ function Register() {
     
   };
 
-  const googleSignIn = () => {};
+  const googleSignIn = () => {
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    const user = result.user;
+    toast.success("Login Successful");
+    navigate("/");
+    
+  }).catch((error) => {
+    toast.error(error.message)
+    
+  });
+  };
   return (
     <>
     {isLoading && <Loader />}
