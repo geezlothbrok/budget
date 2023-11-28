@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import reset from "../../images/Forgot password-amico.png";
 
-import { PiLockKeyOpen } from "react-icons/pi";
+import { TfiEmail } from "react-icons/tfi";
 import "./Reset.css"
 import { Link } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../../firebase/config";
+import { toast } from "react-toastify";
+import Loader from "../../../components/loader/Loader";
 
 function Reset() {
+
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const resetPassword = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    if(email === "") {
+      toast.error("Please enter your email");  
+    };
+
+    sendPasswordResetEmail(auth, email)
+  .then(() => {
+    setIsLoading(false);
+    toast.success("Check your email for a reset link")
+  })
+  .catch((error) => {
+    setIsLoading(false);
+    toast.error(error.message);   
+  });
+  }; 
   return (
+  <>
+  {isLoading && <Loader />}
     <div className="main-container">
       <section className="image-container">
         <img src={reset} alt="reset" />
@@ -24,37 +51,23 @@ function Reset() {
 
           <span className="email-input">
 
-            <PiLockKeyOpen className="icon" />
+            <TfiEmail className="icon" />
 
             <input
-              type="password"
-              placeholder="New Password"
-              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+              type="email"
+              placeholder="email"
               required
               autoCapitalize="none"
               autoComplete="none"
               autoCorrect="none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-
-            <p className="description">
-              Password must contain at least 8 chars, [A-Z],[a-z],[0-9],[@#&]
-            </p>
           </span>
           
-          <span className="email-input">
-            <PiLockKeyOpen className="icon" />
-            <input
-              type="password"
-              placeholder="Confirm Passowrd"
-              required
-              autoCapitalize="none"
-              autoComplete="none"
-              autoCorrect="none"
-            />
-          </span>
         </div>
         <section className="actions">
-          <button type="submit" className="button">
+          <button type="submit" className="button" onClick={resetPassword}>
             Reset
           </button>
           <p className="already-account">
@@ -65,6 +78,7 @@ function Reset() {
         
       </section>
     </div>
+    </>
   );
 }
 
