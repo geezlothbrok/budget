@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaBars, FaGoogleWallet, FaTimes, FaUserCircle } from "react-icons/fa";
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import "./NavBar.css"
 import { auth } from '../../firebase/config';
-import { signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import Loader from '../loader/Loader';
 
@@ -14,6 +14,24 @@ function NavBar() {
 
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [displayName, setDisplayName] = useState("")
+
+  //MONITOR CURRENTLY SIGNED IN USER
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log(user.displayName);
+        setDisplayName(user.displayName);
+        
+      } else {
+        setDisplayName("");
+        
+      }
+    });
+    
+  }, [])
+  
 
   const openMenu = () => {
     setMenuOpen(!menuOpen)
@@ -51,7 +69,7 @@ function NavBar() {
             <FaUserCircle />
           </span>
           <span className="user-name">
-            Hello,
+            Hello, {displayName}
           </span>
         </div>
         <ul className={menuOpen ? "open" : ""} onClick={hideMenu}>

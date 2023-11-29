@@ -39,9 +39,8 @@ function Register() {
 
     createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    // Signed up 
     const user = userCredential.user;
-    console.log(user);
+    
     toast.success("Account Registration Success")
     setIsLoading(false)
     navigate("/login")
