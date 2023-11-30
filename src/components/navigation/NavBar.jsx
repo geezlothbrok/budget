@@ -7,6 +7,9 @@ import { auth } from '../../firebase/config';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import Loader from '../loader/Loader';
+import { useDispatch } from 'react-redux';
+import { SET_ACTIVE_USER } from '../../redux/slice/authSlice';
+
 
 
 function NavBar() {
@@ -14,7 +17,8 @@ function NavBar() {
 
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [displayName, setDisplayName] = useState("")
+  const [displayName, setDisplayName] = useState("");
+  const dispatch = useDispatch();
 
   //MONITOR CURRENTLY SIGNED IN USER
   useEffect(() => {
@@ -22,8 +26,22 @@ function NavBar() {
       if (user) {
         const uid = user.uid;
         console.log(user.displayName);
-        setDisplayName(user.displayName);
+        if(displayName === null) {
+          const u1 = user.email.substring(0, user.email.indexOf("@"));
+          const uName = u1.charAt(0).toUpperCase + u1.slice(1);
+          setDisplayName(uName);
+        } else {
+          setDisplayName(user.displayName);
+        }
         
+        
+        dispatch(
+          SET_ACTIVE_USER({
+            email : user.email,
+            userName: user.displayName ? user.displayName : displayName,
+            userID: user.uid
+          })
+        )
       } else {
         setDisplayName("");
         
