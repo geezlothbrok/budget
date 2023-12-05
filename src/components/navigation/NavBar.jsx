@@ -8,7 +8,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import Loader from '../loader/Loader';
 import { useDispatch } from 'react-redux';
-import { SET_ACTIVE_USER } from '../../redux/slice/authSlice';
+import { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } from '../../redux/slice/authSlice';
 
 
 
@@ -32,6 +32,7 @@ function NavBar() {
           setDisplayName(uName);
         } else {
           setDisplayName(user.displayName);
+          dispatch(REMOVE_ACTIVE_USER());
         }
         
         
@@ -48,7 +49,7 @@ function NavBar() {
       }
     });
     
-  }, [])
+  }, [dispatch, displayName])
   
 
   const openMenu = () => {
