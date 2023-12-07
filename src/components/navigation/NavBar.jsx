@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import Loader from '../loader/Loader';
 import { useDispatch } from 'react-redux';
 import { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } from '../../redux/slice/authSlice';
+import ShowOnLogin, { ShowOnLogout } from '../hidden_links/HiddenLinks';
 
 
 
@@ -82,7 +83,7 @@ function NavBar() {
             Budget.io
           </p>
         </div>
-
+        <ShowOnLogin>
         <div className="user-profile" onClick={hideMenu}>
           <span className="user-image">
             <FaUserCircle />
@@ -91,25 +92,30 @@ function NavBar() {
             Hello, {displayName}
           </span>
         </div>
+        </ShowOnLogin>
         <ul className={menuOpen ? "open" : ""} onClick={hideMenu}>
+          <ShowOnLogin>
           <li onClick={hideMenu}>
             <NavLink to="/">Home</NavLink>
           </li>
+          </ShowOnLogin>
+          <ShowOnLogout>
           <li onClick={hideMenu}>
             <NavLink to="/login">Login</NavLink>
           </li>
-          <li onClick={hideMenu}>
-            <NavLink to="/register">Register</NavLink>
-          </li>
-          <li onClick={hideMenu}>
-            <NavLink to="/reset">Reset</NavLink>
-          </li>
+          </ShowOnLogout>
+          
+          <ShowOnLogin>
           <li onClick={hideMenu}>
             <NavLink to="/add">Add</NavLink>
           </li>
-          <li onClick={logOut}>
-            <NavLink>Logout</NavLink>
+          </ShowOnLogin>
+
+          <ShowOnLogin>
+          <li onClick={logOut}>            
+            <NavLink>Logout</NavLink>            
           </li>
+          </ShowOnLogin>
         </ul>
 
           <div className="toogle-menu" onClick={openMenu}>
