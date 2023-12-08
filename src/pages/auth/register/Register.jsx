@@ -39,7 +39,7 @@ function Register() {
 
     createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    const user = userCredential.user;
+    //const user = userCredential.user;
     
     toast.success("Account Registration Success")
     setIsLoading(false)
@@ -55,7 +55,7 @@ function Register() {
   const googleSignIn = () => {
     signInWithPopup(auth, provider)
   .then((result) => {
-    const user = result.user;
+    //const user = result.user;
     toast.success("Login Successful");
     navigate("/");
     
@@ -112,9 +112,9 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <p className="description">
+            {/* <p className="description">
               Password must contain at least 8 chars, [A-Z],[a-z],[0-9],[@#&]
-            </p>
+            </p> */}
           </span>
           
           <span className="email-input">

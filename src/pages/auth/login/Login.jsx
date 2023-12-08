@@ -103,6 +103,9 @@ function Login() {
            <Link to="/reset">Forgot Password?</Link>
           </p>
         </section>
+        <div className="create-new">
+          <Link to ="/register">New Member?</Link>
+        </div>
         <div className="line">
           <span className="left-line"></span>
           <span className="line-text">or</span>

@@ -6,6 +6,7 @@ import Reset from "../src/pages/auth/reset/Reset";
 import AddNew from "../src/pages/AddNew";
 import NavBar from "./components/navigation/NavBar";
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
