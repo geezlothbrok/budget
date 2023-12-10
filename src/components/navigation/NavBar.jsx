@@ -86,7 +86,7 @@ function NavBar() {
             <FaUserCircle />
           </span>
           <span className="user-name">
-            Hello, {displayName}
+            Hi, {displayName}
           </span>
         </div>
         </ShowOnLogin>
@@ -116,7 +116,7 @@ function NavBar() {
         </ul>
 
           <div className="toogle-menu" onClick={openMenu}>
-           {menuOpen ? (<FaTimes /> ) : ( <FaBars />)}
+           {menuOpen ? (<FaTimes color='black'/> ) : ( <FaBars color='black'/>)}
           </div>
       </div>
     </nav>

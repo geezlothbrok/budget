@@ -137,5 +137,16 @@ nav {
         display: none;
        
     }
+
+    .logo-container .logo-text {
+        font-weight: 500;
+        font-size: 0.7rem;
+        color: black;
+    }
+
+    .logo-container .logo-image {
+        font-size: 1.5rem;
+        color: #33CEFF;
+    }
     
 }
