@@ -1,11 +1,9 @@
 .main-container {
-    /* background: red; */
     width: 100vw;
     height: 100vh;
     display: grid;
-    place-items: center;
-    
-}
+    place-items: center;    
+} 
 
 .expense-form {
     display: flex;
@@ -17,6 +15,7 @@
    border-radius: 4px;
    border: transparent;
    padding: 5rem 1rem 0 1rem;
+
 }
 
 .expense-form .title {
@@ -99,4 +98,29 @@ input::placeholder {
 .expense-form button:hover {
     background: rgb(3, 122, 240);
     cursor: pointer;
+}
+
+
+
+/* MEDIA QUERY FOR MOBILE RESPONSIVE */
+@media screen and ( max-width: 1024px ) {
+    .main-container {
+        
+        display: grid;
+        place-items: center;    
+    } 
+
+    .expense-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+       height: 75vh;
+       width: 50vw;
+       box-shadow: 3px 5px 7px 4px rgba(0, 0, 0, 0.3);
+       border-radius: 4px;
+       border: transparent;
+       padding: 3rem 1rem 0 1rem;
+    
+    }
+    
 }
