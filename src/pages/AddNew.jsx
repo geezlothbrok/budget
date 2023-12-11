@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function AddNew() {
 
-  const [Description, setDescription] = useState("");
+  const [description, setDescription] = useState("");
   const [transactionAmount, setTransactionAmount] = useState(0);
   const [transactiontType, setTransactionType] = useState("expense");
 
@@ -31,12 +31,12 @@ function AddNew() {
           <label htmlFor="" className="description" id="">
             Item
           </label>
-          <input type="text" placeholder="description" required/>
+          <input type="text" placeholder="description" required value={description} onChange={(e) => setDescription(e.target.value)}/>
 
           <label htmlFor="" className="description" id="">
             Amount
           </label>
-          <input type="number" placeholder="Amount" required className="input"/>
+          <input type="number" placeholder="Amount" required className="input" value={transactionAmount} onChange={(e) => setTransactionAmount(e.target.value)}/>
         </section>
 
         <section className="radio-section">
@@ -44,14 +44,14 @@ function AddNew() {
             <label htmlFor="expense" className="description">
             Expense
           </label>
-          <input type="radio" required id="expense" value="expense" />
+          <input type="radio" required id="expense" value="expense"   onChange={(e) => setTransactionType(e.target.value)}/>
           </div>
           
           <div>
             <label htmlFor="income" className="description">
             Income
           </label>
-          <input type="radio" required id="income" value="income" />
+          <input type="radio" required id="income" value="income" onChange={(e) => setTransactionType(e.target.value)}/>
           </div>
           
         </section>
