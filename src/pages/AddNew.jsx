@@ -17,12 +17,12 @@ function AddNew() {
     e.preventDefault();
 
     await addDoc(transactionCollectionRef, {
-      description : "",
-      transactionAmount : 0,
-      transactiontType : "",
+      description,
+      transactionAmount,
+      transactiontType,
       createdAt : serverTimestamp()
-    })
-  };
+    });
+  }
   return (
     <div className="main-container">
       <form action="" className="expense-form" onSubmit={addTransaction}>
@@ -44,14 +44,14 @@ function AddNew() {
             <label htmlFor="expense" className="description">
             Expense
           </label>
-          <input type="radio" required id="expense" value="expense"   onChange={(e) => setTransactionType(e.target.value)}/>
+          <input type="radio" required id="expense" value="expense"  checked={transactiontType === "expense"} onChange={(e) => setTransactionType(e.target.value)}/>
           </div>
           
           <div>
             <label htmlFor="income" className="description">
             Income
           </label>
-          <input type="radio" required id="income" value="income" onChange={(e) => setTransactionType(e.target.value)}/>
+          <input type="radio" required id="income" value="income" checked={transactiontType === "income"} onChange={(e) => setTransactionType(e.target.value)}/>
           </div>
           
         </section>
