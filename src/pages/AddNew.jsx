@@ -3,12 +3,18 @@ import "./AddNew.css";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import Loader from "../components/loader/Loader";
 
 function AddNew() {
 
   const [description, setDescription] = useState("");
   const [transactionAmount, setTransactionAmount] = useState(0);
   const [transactiontType, setTransactionType] = useState("expense");
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const navigate = useNavigate()
 
 
   const transactionCollectionRef = collection(db, "transaction")
@@ -16,14 +22,29 @@ function AddNew() {
   const addTransaction = async (e) => {
     e.preventDefault();
 
+    if (description === "") {
+      toast.error("Add a purpose for this transaction");
+      return false
+    } else if (transactionAmount <= 0) {
+      toast.error("Enter a valid amount for this transaction");
+      return false
+    } 
+    
+
     await addDoc(transactionCollectionRef, {
       description,
       transactionAmount,
       transactiontType,
       createdAt : serverTimestamp()
     });
+    setIsLoading(true)
+    toast.success("Transaction was added");
+    setIsLoading(false);
+    navigate("/");
   }
   return (
+    <>
+    {isLoading && <Loader />}
     <div className="main-container">
       <form action="" className="expense-form" onSubmit={addTransaction}>
         <h1 className="title">add transaction</h1>
@@ -59,6 +80,7 @@ function AddNew() {
         <button type="submit" onClick={addTransaction}>add</button>
       </form>
     </div>
+    </>
   );
 }
 
