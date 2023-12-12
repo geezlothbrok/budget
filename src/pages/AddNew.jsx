@@ -6,80 +6,114 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/loader/Loader";
+import GetData from "../components/GetData";
 
 function AddNew() {
-
   const [description, setDescription] = useState("");
   const [transactionAmount, setTransactionAmount] = useState(0);
   const [transactiontType, setTransactionType] = useState("expense");
   const [isLoading, setIsLoading] = useState(false);
-  
-  const navigate = useNavigate()
 
+  const navigate = useNavigate();
 
-  const transactionCollectionRef = collection(db, "transaction")
+  const transactionCollectionRef = collection(db, "transaction");
 
   const addTransaction = async (e) => {
     e.preventDefault();
 
     if (description === "") {
       toast.error("Add a purpose for this transaction");
-      return false
+      return false;
     } else if (transactionAmount <= 0) {
       toast.error("Enter a valid amount for this transaction");
-      return false
-    } 
-    
+      return false;
+    }
 
-    await addDoc(transactionCollectionRef, {
-      description,
-      transactionAmount,
-      transactiontType,
-      createdAt : serverTimestamp()
-    });
-    setIsLoading(true)
+    try {
+      await addDoc(transactionCollectionRef, {
+        description,
+        transactionAmount,
+        transactiontType,
+        createdAt: serverTimestamp(),
+      });
+    } catch (err) {
+      toast.error("Something went wrong");
+    }
+    setIsLoading(true);
     toast.success("Transaction was added");
     setIsLoading(false);
     navigate("/");
-  }
+  };
   return (
     <>
-    {isLoading && <Loader />}
-    <div className="main-container">
-      <form action="" className="expense-form" onSubmit={addTransaction}>
-        <h1 className="title">add transaction</h1>
-        <section className="input-section">
-          <label htmlFor="" className="description" id="">
-            Item
-          </label>
-          <input type="text" placeholder="description" required value={description} onChange={(e) => setDescription(e.target.value)}/>
+      {isLoading && <Loader />}
+      <div className="main-container">
+        <form action="" className="expense-form" onSubmit={addTransaction}>
+          <h1 className="title">add transaction</h1>
+          <section className="input-section">
+            <label htmlFor="" className="description">
+              Item
+            </label>
+            <input
+              type="text"
+              placeholder="description"
+              required
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              autoCorrect="on"
+              autoCapitalize="on"
+            />
 
-          <label htmlFor="" className="description" id="">
-            Amount
-          </label>
-          <input type="number" placeholder="Amount" required className="input" value={transactionAmount} onChange={(e) => setTransactionAmount(e.target.value)}/>
-        </section>
+            <label htmlFor="" className="description">
+              Amount
+            </label>
+            <input
+              type="number"
+              placeholder="Amount"
+              required
+              className="input"
+              value={transactionAmount}
+              onChange={(e) => setTransactionAmount(e.target.value)}
+              inputMode="numeric"
+            />
+          </section>
 
-        <section className="radio-section">
-          <div>
-            <label htmlFor="expense" className="description">
-            Expense
-          </label>
-          <input type="radio" required id="expense" value="expense"  checked={transactiontType === "expense"} onChange={(e) => setTransactionType(e.target.value)}/>
-          </div>
-          
-          <div>
-            <label htmlFor="income" className="description">
-            Income
-          </label>
-          <input type="radio" required id="income" value="income" checked={transactiontType === "income"} onChange={(e) => setTransactionType(e.target.value)}/>
-          </div>
-          
-        </section>
+          <section className="radio-section">
+            <div>
+              <label htmlFor="expense" className="description">
+                Expense
+              </label>
+              <input
+                type="radio"
+                required
+                id="expense"
+                value="expense"
+                checked={transactiontType === "expense"}
+                onChange={(e) => setTransactionType(e.target.value)}
+              />
+            </div>
 
-        <button type="submit" onClick={addTransaction}>add</button>
-      </form>
-    </div>
+            <div>
+              <label htmlFor="income" className="description">
+                Income
+              </label>
+              <input
+                type="radio"
+                required
+                id="income"
+                value="income"
+                checked={transactiontType === "income"}
+                onChange={(e) => setTransactionType(e.target.value)}
+              />
+            </div>
+          </section>
+
+          <button type="submit" onClick={addTransaction}>
+            add
+          </button>
+        </form>
+      </div>
+
     </>
   );
 }
